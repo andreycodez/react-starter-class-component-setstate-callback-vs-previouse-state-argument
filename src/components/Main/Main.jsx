@@ -5,10 +5,13 @@ class Main extends React.Component {
     someVal: 0,
   };
 
-  // Usung a callback
-  // 2 rerenders + you can easily get into callback hell
-  // The pdateValueForCallback function will be executed after the state is updated with the onclick event
-  // so you don't have access to the final state value
+  /** 
+    ==== USING A CALLBACK IN SET_STATE DISADVANTAGES:
+    * 2 rerenders + you can easily get into callback hell
+    * The updateValueForCallback function will be executed after the state is updated with the onclick event
+    * so you don't have access to the final state value in both to make actions with the value
+  */ 
+  
   updateValueForCallback = () => {
     console.log(this.state.someVal);
     this.setState({ someVal: this.state.someVal + 3 });
@@ -22,6 +25,14 @@ class Main extends React.Component {
     );
     console.log('Render happened!');
   };
+
+
+  /** 
+    ==== USING A PREV AS PREVIOUS (current, before update) STATE OBJECT:
+    * A single rerender
+    * The updateValueForPrev function can be moved into helpers file to make the component clean
+    * You have access to both values within the function (the previous and the new calculated value)
+  */ 
 
   // Using previous state as argument
   // A single rerender, the updateValueForPrev function can be moved into helpers file to make the component cleaner
